@@ -3,8 +3,8 @@ import {RadioGroup, Radio} from "@nextui-org/react";
 
 export function RadioAnswer(props) {
 
-    const { id, q, respuestas, cantidad } = props;
-    const [selected, setSelected] = useState("");
+    const { id, q, /* respuestas, */ cantidad, onAnswerSelected } = props;
+    const [selectedAnswer, setAnswerSelected] = useState("");
 
     /* const combinado = respuestas.map((respuesta, index) => ({
       respuesta,
@@ -13,14 +13,17 @@ export function RadioAnswer(props) {
     
     console.log(combinado); */
 
-    const valores = {
+    /* const valores = {
       'nada' : 0,
       'leve' : 1,
       'moderado' : 2,
       'mucho' : 3
+    } */
+    
+    const handleAnswerChange = (value) => {
+      setAnswerSelected(value);
+      onAnswerSelected(id, value)
     }
-    
-    
 
 
     return (
@@ -32,8 +35,9 @@ export function RadioAnswer(props) {
         <RadioGroup
         id={id}
         orientation="horizontal"
-        value={selected}
-        onValueChange={setSelected}
+        value={selectedAnswer}
+        onValueChange={handleAnswerChange}
+        isRequired= {true}
         className='flex flex-row items-center min-w-32 '
       >
         {cantidad.map((cantidad) => (
@@ -43,7 +47,7 @@ export function RadioAnswer(props) {
         ))}
       </RadioGroup>
       </div>
-      <p className="text-default-500 text-small">Seleccionado: {selected}</p>
+      <p className="text-default-500 text-small">Seleccionado: {selectedAnswer}</p>
       </div>
     )
 }
