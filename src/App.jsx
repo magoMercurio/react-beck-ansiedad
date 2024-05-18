@@ -132,20 +132,24 @@ const questions = [
 ];
 
 const valorMap = {
-  'nada': 0,
-  'leve': 1,
-  'moderado': 2,
-  'mucho': 3,
+  nada: 0,
+  leve: 1,
+  moderado: 2,
+  mucho: 3,
 };
 
 function App() {
   const [answers, setAnswers] = useState([]);
-  const [isSubmitDisabled, setIsSubmitDisabled] = useState(true); 
+  const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
+  const [showForm, setShowForm] = useState(true);
+  const [totalSum, setTotalSum] = useState(null);
 
   const handleAnswerSelected = (questionId, selectedAnswer) => {
-    setAnswers(prevAnswers => {
+    setAnswers((prevAnswers) => {
       const updatedAnswers = [...prevAnswers];
-      const questionIndex = updatedAnswers.findIndex(answer => answer.id === questionId);
+      const questionIndex = updatedAnswers.findIndex(
+        (answer) => answer.id === questionId
+      );
       if (questionIndex !== -1) {
         updatedAnswers[questionIndex].respuesta = selectedAnswer;
       } else {
@@ -166,8 +170,15 @@ function App() {
   const handleClick = (e) => {
     e.preventDefault();
     const total = transformAndSumAnswers(answers);
-    console.log("Respuestas del usuario:", answers);
-    console.log("Total de la suma:", total);
+    setTotalSum(total);
+    setShowForm(false);
+  };
+
+  const handleReset = () => {
+    setAnswers([]);
+    setIsSubmitDisabled(true);
+    setShowForm(true);
+    setTotalSum(null);
   };
 
   return (
@@ -175,29 +186,41 @@ function App() {
       <h1 className="flex justify-center items-center text-4xl">
         Test de Ansiedad de Beck
       </h1>
-      <form className="my-10 mx-8 w-[600px] min-w-0">
-        <div className="flex flex-row justify-between items-center">
-          <div>
-            Preguntas
+      {showForm ? (
+        <form className="my-10 mx-8 w-[600px] min-w-0">
+          <div className="flex flex-row justify-between items-center">
+            <div>Preguntas</div>
+            <div className="capitalize">nada - leve - moderado - mucho</div>
           </div>
-          <div className="capitalize">
-            nada - leve - moderado - mucho
-          </div>
-        </div>
-        {questions.map((question) => (
-          <RadioAnswer
-            key={question.id}
-            id={question.id}
-            q={question.q}
-            respuestas={question.respuestas}
-            cantidad={question.cantidad}
-            onAnswerSelected={handleAnswerSelected}
-          />
-        ))}
-        <Button onClick={handleClick} isDisabled={isSubmitDisabled} className="bg-blue-500 px-4 py-2 rounded-md">
-          Enviar
-        </Button>
-      </form>
+          {questions.map((question) => (
+            <RadioAnswer
+              key={question.id}
+              id={question.id}
+              q={question.q}
+              respuestas={question.respuestas}
+              cantidad={question.cantidad}
+              onAnswerSelected={handleAnswerSelected}
+            />
+          ))}
+          <Button
+            onClick={handleClick}
+            isDisabled={isSubmitDisabled}
+            className="bg-blue-500 px-4 py-2 rounded-md"
+          >
+            Enviar
+          </Button>
+        </form>
+      ) : (
+        <article className="my-10 mx-8 w-[600px] min-w-0 text-center">
+          <h2 className="text-2xl">Resultado {totalSum}</h2>
+          <Button
+            onClick={handleReset}
+            className="bg-blue-500 px-4 py-2 rounded-md mt-4"
+          >
+            Volver a empezar
+          </Button>
+        </article>
+      )}
     </main>
   );
 }

@@ -1,8 +1,16 @@
-# React + Vite
+# Inventario de Ansiedad de Beck (BAI)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Responda este cuestionario considerando sus dificultades actuales. Considere como referencia las dificultades que ha tenido este último mes.
 
-Currently, two official plugins are available:
+El Inventario de Ansiedad de Beck es una herramienta útil para valorar los síntomas somáticos de ansiedad, tanto en desórdenes de ansiedad como en cuadros depresivos.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+El cuestionario consta de 21 preguntas, proporcionando un rango de puntuación entre 0 y 63. Los puntos de corte sugeridos para interpretar el resultado obtenido son los siguientes:
+
+00–21 - Ansiedad muy baja
+22–35 - Ansiedad moderada
+más de 36 - Ansiedad severa
+Cada ítem se puntúa de 0 a 3, correspondiendo la puntuación 0 a "en absoluto", 1 a "levemente, no me molesta mucho", 2 a "moderadamente, fue muy desagradable pero podía soportarlo" y la puntuación 3 a "severamente, casi no podía soportarlo".
+
+La puntuación total es la suma de las de todos los ítems. Los síntomas hacen referencia a la última semana y al momento actual.
+
+En el cuestionario hay una lista de síntomas comunes de la ansiedad. Lea cada uno de los ítems atentamente, e indique cuanto le ha afectado en la última semana incluyendo hoy.
