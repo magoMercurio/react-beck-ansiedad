@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { RadioAnswer } from "./components/RadioAnswer";
-import {Button} from "@nextui-org/react";
-
+import { Button } from "@nextui-org/react";
 
 const questions = [
   {
@@ -130,49 +129,34 @@ const questions = [
     respuestas: [0, 1, 2, 3],
     cantidad: ["nada", "leve", "moderado", "mucho"],
   },
-
 ];
 
-/* const valores = {
-  nada: 0,
-  leve: 1,
-  moderado: 2,
-  mucho: 3,
-}; */
-
-
 function App() {
-  const [answers, setAnswers] = useState([])
-  const [isSubmitDisabled, setIsSubmitDisabled] = useState(true); // Estado para mantener el estado de deshabilitación del botón de envío
+  const [answers, setAnswers] = useState([]);
+  const [isSubmitDisabled, setIsSubmitDisabled] = useState(true); 
 
   const handleAnswerSelected = (questionId, selectedAnswer) => {
     setAnswers(prevAnswers => {
-      // Copia el estado actual de las respuestas
       const updatedAnswers = [...prevAnswers];
-      // Encuentra la respuesta correspondiente a la pregunta y actualiza su valor
       const questionIndex = updatedAnswers.findIndex(answer => answer.id === questionId);
       if (questionIndex !== -1) {
         updatedAnswers[questionIndex].respuesta = selectedAnswer;
       } else {
         updatedAnswers.push({ id: questionId, respuesta: selectedAnswer });
       }
+      const allAnswered = questions.length === updatedAnswers.length;
+      setIsSubmitDisabled(!allAnswered);
       return updatedAnswers;
     });
-     // Verificar si al menos una respuesta ha sido seleccionada para habilitar/deshabilitar el botón de envío
-     const hasAnswer = answers.some(answer => answer.id === questionId);
-     setIsSubmitDisabled(!hasAnswer);
   };
 
-   // Función para manejar el envío de respuestas
   const handleClick = (e) => {
-    e.preventDefault()
-
+    e.preventDefault();
     console.log("Respuestas del usuario:", answers);
-    // Aquí puedes hacer más cosas con las respuestas del usuario
   };
 
   return (
-    <main className=" w-max bg-slate-800 mx-auto text-white">
+    <main className="w-max bg-slate-800 mx-auto text-white">
       <h1 className="flex justify-center items-center text-4xl">
         Test de Ansiedad de Beck
       </h1>
@@ -187,20 +171,18 @@ function App() {
         </div>
         {questions.map((question) => (
           <RadioAnswer
-  
             key={question.id}
             id={question.id}
             q={question.q}
             respuestas={question.respuestas}
             cantidad={question.cantidad}
-            onAnswerSelected={handleAnswerSelected} // Pasar la función de devolución de llamada
+            onAnswerSelected={handleAnswerSelected}
           />
         ))}
         <Button onClick={handleClick} isDisabled={isSubmitDisabled} className="bg-blue-500 px-4 py-2 rounded-md">
           Enviar
         </Button>
       </form>
-      
     </main>
   );
 }
