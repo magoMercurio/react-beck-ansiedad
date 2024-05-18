@@ -131,6 +131,13 @@ const questions = [
   },
 ];
 
+const valorMap = {
+  'nada': 0,
+  'leve': 1,
+  'moderado': 2,
+  'mucho': 3,
+};
+
 function App() {
   const [answers, setAnswers] = useState([]);
   const [isSubmitDisabled, setIsSubmitDisabled] = useState(true); 
@@ -150,9 +157,17 @@ function App() {
     });
   };
 
+  const transformAndSumAnswers = (answers) => {
+    return answers.reduce((total, answer) => {
+      return total + valorMap[answer.respuesta];
+    }, 0);
+  };
+
   const handleClick = (e) => {
     e.preventDefault();
+    const total = transformAndSumAnswers(answers);
     console.log("Respuestas del usuario:", answers);
+    console.log("Total de la suma:", total);
   };
 
   return (
