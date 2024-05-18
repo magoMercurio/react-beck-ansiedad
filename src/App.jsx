@@ -167,6 +167,12 @@ function App() {
     }, 0);
   };
 
+  const getAnxietyLevel = (score) => {
+    if (score <= 21) return "Ansiedad muy baja";
+    if (score <= 35) return "Ansiedad moderada";
+    return "Ansiedad severa";
+  };
+
   const handleClick = (e) => {
     e.preventDefault();
     const total = transformAndSumAnswers(answers);
@@ -213,6 +219,7 @@ function App() {
       ) : (
         <article className="my-10 mx-8 w-[600px] min-w-0 text-center">
           <h2 className="text-2xl">Resultado {totalSum}</h2>
+          <p className="text-lg mb-6">{`Nivel de ansiedad: ${getAnxietyLevel(totalSum)}`}</p>
           <Button
             onClick={handleReset}
             className="bg-blue-500 px-4 py-2 rounded-md mt-4"
