@@ -194,7 +194,7 @@ function App() {
       </h1>
       {showForm ? (
         <form className="my-10 mx-8 w-[600px] min-w-0">
-          <div className="flex flex-row justify-between items-center">
+          <div className="flex flex-row justify-between items-center sticky top-0 bg-slate-700">
             <div>Preguntas</div>
             <div className="capitalize">nada - leve - moderado - mucho</div>
           </div>
