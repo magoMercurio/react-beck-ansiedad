@@ -187,17 +187,35 @@ function App() {
     setTotalSum(null);
   };
 
+  const year = new Date().getFullYear();
+
   return (
-    <main className="w-max bg-slate-800 mx-auto text-white">
-      <h1 className="mx-auto flex justify-center items-center text-4xl">
+    <body className="w-max mx-auto bg-slate-800">
+    <main className="w-max mx-auto mb-8 text-white">
+      <h1 className="mx-auto pt-4 flex justify-center items-center text-4xl">
         Test de Ansiedad de Beck
       </h1>
-      <p className="w-[600px] mx-auto my-4 flex justify-center items-center text-center text-lg">
-      Responda este cuestionario considerando sus dificultades actuales. Considere como referencia las dificultades que ha tenido este último mes.
-      </p>
+
       {showForm ? (
-        <form className="my-10 mx-8 w-[600px] min-w-0">
-          <div className="flex flex-row justify-between items-center sticky top-0 bg-slate-700">
+        <form className="mt-10 mx-8 w-[600px] min-w-0">
+          <p className=" mb-8 flex justify-center items-center text-center text-lg text-pretty">
+            Responda este cuestionario considerando sus dificultades actuales.
+            Considere como referencia las dificultades que ha tenido este último
+            mes.
+            <br />
+            <br />
+            Cada ítem se puntúa de 0 a 3, correspondiendo la puntuación 0 a
+            &quot;nada&quot;, 1 a &quot;leve, no me molesta mucho&quot;, 2 a
+            &quot;moderadamente, fue muy desagradable pero podía
+            soportarlo&quot; y la puntuación 3 a &quot;mucho, casi no podía
+            soportarlo&quot;.
+            <br />
+            <br />
+            En el cuestionario hay una lista de síntomas comunes de la ansiedad.
+            Lea cada uno de los ítems atentamente, e indique cuanto le ha
+            afectado en la última semana incluyendo hoy.
+          </p>
+          <div className=" min-w-0 flex flex-row justify-between items-center sticky top-0 bg-slate-700">
             <div>Preguntas</div>
             <div className="capitalize">nada - leve - moderado - mucho</div>
           </div>
@@ -220,9 +238,15 @@ function App() {
           </Button>
         </form>
       ) : (
-        <article className="my-10 mx-8 w-[600px] min-w-0 text-center">
-          <h2 className="text-2xl">Resultado {totalSum}</h2>
-          <p className="text-lg mb-6">{`Nivel de ansiedad: ${getAnxietyLevel(totalSum)}`}</p>
+        <article className=" mx-8 w-[600px] min-w-0 min-h-screen flex flex-col justify-center items-center text-center">
+          <h2 className="text-2xl pt-4">Resultado {totalSum}</h2>
+          <p className="my-4 flex justify-center items-center text-center text-lg text-pretty">
+            La puntuación total es la suma de las de todos los ítems. Los
+            síntomas hacen referencia a la última semana y al momento actual.
+          </p>
+          <p className="text-lg font-bold mb-6">{`Nivel de ansiedad: ${getAnxietyLevel(
+            totalSum
+          )}`}</p>
           <Button
             onClick={handleReset}
             className="bg-blue-500 px-4 py-2 rounded-md mt-4"
@@ -232,6 +256,18 @@ function App() {
         </article>
       )}
     </main>
+    <footer className=" mx-auto w-full pb-4 text-center text-sm text-gray-500">
+      &copy;{year} 👨🏽‍💻 Hecho por 
+      <a
+        className="ml-1 font-semibold text-blue-600 hover:text-green-600"
+        href="https://rauldavila-portfolio.vercel.app/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+         Raul Davila
+      </a>
+    </footer>
+    </body>
   );
 }
 
