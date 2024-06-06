@@ -189,9 +189,12 @@ function App() {
 
   return (
     <main className="w-max bg-slate-800 mx-auto text-white">
-      <h1 className="flex justify-center items-center text-4xl">
+      <h1 className="mx-auto flex justify-center items-center text-4xl">
         Test de Ansiedad de Beck
       </h1>
+      <p className="w-[600px] mx-auto my-4 flex justify-center items-center text-center text-lg">
+      Responda este cuestionario considerando sus dificultades actuales. Considere como referencia las dificultades que ha tenido este último mes.
+      </p>
       {showForm ? (
         <form className="my-10 mx-8 w-[600px] min-w-0">
           <div className="flex flex-row justify-between items-center sticky top-0 bg-slate-700">
