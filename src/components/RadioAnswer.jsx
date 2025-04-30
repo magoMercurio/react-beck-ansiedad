@@ -2,7 +2,7 @@ import { useState } from "react";
 import { RadioGroup, Radio } from "@nextui-org/react";
 
 export function RadioAnswer(props) {
-  const { id, q, /* respuestas, */ cantidad, onAnswerSelected } = props;
+  const { id, q, cantidad, onAnswerSelected } = props;
   const [selectedAnswer, setAnswerSelected] = useState("");
 
   const handleAnswerChange = (value) => {

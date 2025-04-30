@@ -190,7 +190,7 @@ function App() {
   const year = new Date().getFullYear();
 
   return (
-    <body className="w-max mx-auto bg-slate-800">
+    <section className="w-max mx-auto bg-slate-800">
       <main className="w-max mx-auto mb-8 text-white">
         <h1 className="mx-auto pt-4 flex justify-center items-center text-4xl">
           Test de Ansiedad de Beck
@@ -224,7 +224,6 @@ function App() {
                 key={question.id}
                 id={question.id}
                 q={question.q}
-                respuestas={question.respuestas}
                 cantidad={question.cantidad}
                 onAnswerSelected={handleAnswerSelected}
               />
@@ -267,7 +266,7 @@ function App() {
           Raul Davila
         </a>
       </footer>
-    </body>
+    </section>
   );
 }
 
